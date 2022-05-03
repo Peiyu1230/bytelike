@@ -115,3 +115,11 @@ BookInfo.objects.filter(Q(read_count__gte=10)|Q(id__lt=3))
 # 查询id不等于3的数据
 BookInfo.objects.filter(~Q(id=1))
 
+###############聚合函数 排序 #######################
+from django.db.models import Sum,Max,Min,Avg,Count
+
+BookInfo.objects.aggregate(Sum("read_count"))
+
+# 排序
+BookInfo.objects.all().order_by('read_count')
+BookInfo.objects.all().order_by('-read_count')
