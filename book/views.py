@@ -123,3 +123,16 @@ BookInfo.objects.aggregate(Sum("read_count"))
 # 排序
 BookInfo.objects.all().order_by('read_count')
 BookInfo.objects.all().order_by('-read_count')
+
+
+############## 关联查询 ##################
+
+# 获取编号为1的人物信息
+book = BookInfo.objects.get(id=1)
+book.peopleinfo_set.all()
+
+PeopleInfo.objects.filter(book=1)
+# 获取人物为1的书籍信息
+people = PeopleInfo.objects.get(id=1)
+people.book.name
+people.book.read_count

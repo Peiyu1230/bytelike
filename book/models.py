@@ -14,6 +14,11 @@ class BookInfo(models.Model):
     class Meta:
         db_table = "bookinfo"
         verbose_name = "书籍管理"
+#     1对多模型中
+#       系统自动创建一个多的peopleinfo_set
+#       people_set = [PeopleInfo,PeopleInfo...]
+
+
 
 class PeopleInfo(models.Model):
     gender_choice = (
