@@ -92,3 +92,26 @@ BookInfo.objects.exclude(id=1)
 BookInfo.objects.filter(pub_data__year__gt="2020")
 # 查询2000年发布的图书
 BookInfo.objects.filter(pub_data__year="2000")
+
+##############两个数据的比较F##########################
+from django.db.models import F
+
+# 获取阅读量大于等于评论量的数据
+
+BookInfo.objects.filter(read_count__lte=F('commit_count'))
+
+############## 并&非~查询 ##########################
+from django.db.models import Q
+
+# 查询阅读量大于20并且编号小于3的书籍
+
+BookInfo.objects.filter(read_count__gte=10,id__lt=3)
+BookInfo.objects.filter(read_count__gte=10).filter(id__lt=3)
+BookInfo.objects.filter(Q(read_count__gte=10)&Q(id__lt=3))
+
+# 查询阅读量大于20或者编号小于3的书籍
+BookInfo.objects.filter(Q(read_count__gte=10)|Q(id__lt=3))
+
+# 查询id不等于3的数据
+BookInfo.objects.filter(~Q(id=1))
+
