@@ -24,3 +24,13 @@ BookInfo.objects.create(
     pub_data='2020-1-1',
     read_count = 10
 )
+
+##################2\更新数据#######################
+
+# 1、方法1
+book = BookInfo.objects.get(id=6)
+book.name = "运维开发"
+book.save()
+
+# 2、方法2
+BookInfo.objects.filter(id=6).update(name="水浒传",pub_data="2022-05-01")
