@@ -34,3 +34,14 @@ book.save()
 
 # 2、方法2
 BookInfo.objects.filter(id=6).update(name="水浒传",pub_data="2022-05-01")
+
+##################3\删除数据#######################
+
+# 1\方法1
+book = BookInfo.objects.get(id=8)
+book.delete()
+
+# 2、方法2
+BookInfo.objects.get(id=8).delete()
+# or
+BookInfo.objects.filter(id=8).delete()
