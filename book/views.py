@@ -45,3 +45,50 @@ book.delete()
 BookInfo.objects.get(id=8).delete()
 # or
 BookInfo.objects.filter(id=8).delete()
+
+
+##################4\查询数据(单个查询)#######################
+
+
+# get获取单个和全部数据
+BookInfo.objects.get(id=1)
+BookInfo.objects.all()
+# 获取数据数量
+BookInfo.objects.all().count()
+BookInfo.objects.count()
+
+##################4\查询数据(过滤查询)#######################
+
+# 查询编号等于1的商品
+book = BookInfo.objects.get(id=1)
+book = BookInfo.objects.get(id__exact=1)
+
+# filter获取到的是列表 get获取到的是数值
+book = BookInfo.objects.filter(id=1)
+
+# id也可以写成pk primary key 主键
+book = BookInfo.objects.get(pk=1)
+
+
+# 查询输名字包含"xx"的图书
+BookInfo.objects.filter(name__contains="传")
+# 查询书名以""结尾的图书
+BookInfo.objects.filter(name__endswith="传")
+# 查询书名为空的图书
+BookInfo.objects.filter(name__isnull=True)
+# 查询编号为1、3、5的图书
+BookInfo.objects.filter(id__in=[1,3,5])
+# 查询编号大于3的图书
+BookInfo.objects.filter(id__gt=5)
+# 查询编号大于等于3的图书
+BookInfo.objects.filter(id__gte=3)
+# 查询编号小于3的图书
+BookInfo.objects.filter(id__lt=3)
+# 查询编号小于等于3的图书
+BookInfo.objects.filter(id__lte=3)
+# 查询编号不等于3的图书
+BookInfo.objects.exclude(id=1)
+# 查询1980年以后的图书
+BookInfo.objects.filter(pub_data__year__gt="2020")
+# 查询2000年发布的图书
+BookInfo.objects.filter(pub_data__year="2000")
