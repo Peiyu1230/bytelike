@@ -136,3 +136,17 @@ PeopleInfo.objects.filter(book=1)
 people = PeopleInfo.objects.get(id=1)
 people.book.name
 people.book.read_count
+
+
+############## 关联过滤查询 ##################
+
+# 查询名字为孙悟空的书籍
+BookInfo.objects.filter(peopleinfo__name__exact="孙悟空")
+BookInfo.objects.filter(peopleinfo__name="猪八戒")
+# 查询名字含有八的书籍
+BookInfo.objects.filter(peopleinfo__name__contains="八")
+
+# 查询书名为"西游记"的所有人物
+PeopleInfo.objects.filter(book__name="西游记")
+# 查询阅读量超过10的书籍的所有人物
+PeopleInfo.objects.filter(book__read_count__gte=10)
