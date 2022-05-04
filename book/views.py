@@ -70,3 +70,19 @@ def set_cookie(request):
 def get_cookie(request):
     name = request.COOKIES.get('name')
     return HttpResponse(name)
+
+################ session ###############
+
+def set_session(request):
+    username = request.GET.get('username')
+    request.session['user_id'] = 1
+    request.session['username'] = username
+    return HttpResponse("set_session")
+
+def get_sesion(request):
+    user_id = request.session.get('user_id')
+    username = request.session.get('username')
+    context = '{},{}'.format(user_id,username)
+
+    return HttpResponse(context)
+
