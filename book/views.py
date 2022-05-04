@@ -21,3 +21,7 @@ def shop(request,city_id,shop_id):
     order=qurey.getlist('order')
     print(order)
     return HttpResponse("商城列表")
+def register(request):
+    data = request.POST
+    print(data)
+    return HttpResponse("ok")
