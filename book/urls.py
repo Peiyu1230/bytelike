@@ -19,5 +19,7 @@ urlpatterns = [
     path('<int:city_id>/<mobile:shop_id>/',shop),
     path('register/',register),
     path('json/',jsons),
-    path('res/',res)
+    path('res/',res),
+    path('set_cookie/',set_cookie),
+    path('get_cookie/',get_cookie),
 ]

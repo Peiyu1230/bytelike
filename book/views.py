@@ -14,6 +14,7 @@ def creat(request):
     return HttpResponse("creat")
 def shop(request,city_id,shop_id):
     print(city_id,shop_id)
+    # 方法2
     # qurey = request.GET
     # order = qurey.get('order')
     # order = qurey['order']
@@ -53,3 +54,19 @@ def res(request):
     response = JsonResponse(girl_list,safe=False)
 
     return response
+
+
+################ cookie 和 session ###############
+
+def set_cookie(request):
+    username = request.GET.get('username')
+
+    response = HttpResponse("set_cookie")
+
+    response.set_cookie('name',username)
+
+    return response
+
+def get_cookie(request):
+    name = request.COOKIES.get('name')
+    return HttpResponse(name)
