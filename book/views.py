@@ -71,58 +71,58 @@ book = BookInfo.objects.get(pk=1)
 
 
 # 查询输名字包含"xx"的图书
-BookInfo.objects.filter(name__contains="传")
+book = BookInfo.objects.filter(name__contains="传")
 # 查询书名以""结尾的图书
-BookInfo.objects.filter(name__endswith="传")
+book = BookInfo.objects.filter(name__endswith="传")
 # 查询书名为空的图书
-BookInfo.objects.filter(name__isnull=True)
+book = BookInfo.objects.filter(name__isnull=True)
 # 查询编号为1、3、5的图书
-BookInfo.objects.filter(id__in=[1,3,5])
+book = BookInfo.objects.filter(id__in=[1,3,5])
 # 查询编号大于3的图书
-BookInfo.objects.filter(id__gt=5)
+book = BookInfo.objects.filter(id__gt=5)
 # 查询编号大于等于3的图书
-BookInfo.objects.filter(id__gte=3)
+book = BookInfo.objects.filter(id__gte=3)
 # 查询编号小于3的图书
-BookInfo.objects.filter(id__lt=3)
+book = BookInfo.objects.filter(id__lt=3)
 # 查询编号小于等于3的图书
-BookInfo.objects.filter(id__lte=3)
+book = BookInfo.objects.filter(id__lte=3)
 # 查询编号不等于3的图书
-BookInfo.objects.exclude(id=1)
+book = BookInfo.objects.exclude(id=1)
 # 查询1980年以后的图书
-BookInfo.objects.filter(pub_data__year__gt="2020")
+book = BookInfo.objects.filter(pub_data__year__gt="2020")
 # 查询2000年发布的图书
-BookInfo.objects.filter(pub_data__year="2000")
+book = BookInfo.objects.filter(pub_data__year="2000")
 
 ##############两个数据的比较F##########################
 from django.db.models import F
 
 # 获取阅读量大于等于评论量的数据
 
-BookInfo.objects.filter(read_count__lte=F('commit_count'))
+book = BookInfo.objects.filter(read_count__lte=F('commit_count'))
 
 ############## 并&非~查询 ##########################
 from django.db.models import Q
 
 # 查询阅读量大于20并且编号小于3的书籍
 
-BookInfo.objects.filter(read_count__gte=10,id__lt=3)
-BookInfo.objects.filter(read_count__gte=10).filter(id__lt=3)
-BookInfo.objects.filter(Q(read_count__gte=10)&Q(id__lt=3))
+book = BookInfo.objects.filter(read_count__gte=10,id__lt=3)
+book = BookInfo.objects.filter(read_count__gte=10).filter(id__lt=3)
+book = BookInfo.objects.filter(Q(read_count__gte=10)&Q(id__lt=3))
 
 # 查询阅读量大于20或者编号小于3的书籍
-BookInfo.objects.filter(Q(read_count__gte=10)|Q(id__lt=3))
+book = BookInfo.objects.filter(Q(read_count__gte=10)|Q(id__lt=3))
 
 # 查询id不等于3的数据
-BookInfo.objects.filter(~Q(id=1))
+book = BookInfo.objects.filter(~Q(id=1))
 
 ###############聚合函数 排序 #######################
 from django.db.models import Sum,Max,Min,Avg,Count
 
-BookInfo.objects.aggregate(Sum("read_count"))
+book = BookInfo.objects.aggregate(Sum("read_count"))
 
 # 排序
-BookInfo.objects.all().order_by('read_count')
-BookInfo.objects.all().order_by('-read_count')
+book = BookInfo.objects.all().order_by('read_count')
+book = BookInfo.objects.all().order_by('-read_count')
 
 
 ############## 关联查询 ##################
@@ -141,12 +141,12 @@ people.book.read_count
 ############## 关联过滤查询 ##################
 
 # 查询名字为孙悟空的书籍
-BookInfo.objects.filter(peopleinfo__name__exact="孙悟空")
-BookInfo.objects.filter(peopleinfo__name="猪八戒")
+book = BookInfo.objects.filter(peopleinfo__name__exact="孙悟空")
+book = BookInfo.objects.filter(peopleinfo__name="猪八戒")
 # 查询名字含有八的书籍
-BookInfo.objects.filter(peopleinfo__name__contains="八")
+book = BookInfo.objects.filter(peopleinfo__name__contains="八")
 
 # 查询书名为"西游记"的所有人物
-PeopleInfo.objects.filter(book__name="西游记")
+people = PeopleInfo.objects.filter(book__name="西游记")
 # 查询阅读量超过10的书籍的所有人物
-PeopleInfo.objects.filter(book__read_count__gte=10)
+people = PeopleInfo.objects.filter(book__read_count__gte=10)
