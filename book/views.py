@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
+from django.views import View
+
 from book.models import *
 
 # Create your views here.
@@ -86,3 +88,10 @@ def get_sesion(request):
 
     return HttpResponse(context)
 
+# 类视图
+
+class login(View):
+    def get(self,request):
+        return HttpResponse('get get get')
+    def post(self,request):
+        return HttpResponse('post post post')
