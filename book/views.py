@@ -95,3 +95,15 @@ class login(View):
         return HttpResponse('get get get')
     def post(self,request):
         return HttpResponse('post post post')
+
+# 多继承
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# 多继承遵循mro规则
+# 必须有admin页面的登录信息才可以正常return
+class OrderView(LoginRequiredMixin,View):
+    def get(self,request):
+        return HttpResponse('Get 我的订单页面')
+    def post(self,request):
+        return HttpResponse('Post 我的订单页面')

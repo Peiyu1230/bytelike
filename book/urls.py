@@ -26,4 +26,5 @@ urlpatterns = [
     path('get_session/',get_sesion),
 #     类视图
     path('163login/',login.as_view()),
+    path('order/',OrderView.as_view())
 ]
