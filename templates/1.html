@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello_world</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <a href="">{{ info }}</a>
+        <hr>
+        <a v-bind:href="next">点击有惊喜</a>
+    </div>
+
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        //分隔符 【】
+        //delimiters: ['[[',']]'],
+        data:{
+            message: 'hello vue',
+            info: "请登录",
+            next: 'http://www.baidu.com'
+        }
+    })
+
+</script>
+</html>
